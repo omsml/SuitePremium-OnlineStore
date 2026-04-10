@@ -205,8 +205,8 @@ class SuiteController {
     public void deleteOrder(@PathVariable Long id) {
         orderRepo.deleteById(id);
     }
-}
-import org.springframework.stereotype.Controller;
+
+   import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -221,4 +221,6 @@ class ViewController {
     public String admin() {
         return "admin"; // loads admin.html
     }
+}
+
 }
