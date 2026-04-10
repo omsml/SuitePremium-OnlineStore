@@ -206,3 +206,19 @@ class SuiteController {
         orderRepo.deleteById(id);
     }
 }
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+class ViewController {
+
+    @GetMapping("/")
+    public String home() {
+        return "index"; // loads index.html
+    }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin"; // loads admin.html
+    }
+}
