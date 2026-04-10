@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import jakarta.persistence.*;
 import java.util.List;
 import java.util.Optional;
+import java.util.Map; // Added for the root response
 
 @SpringBootApplication
 public class SuiteBackend {
@@ -112,6 +113,16 @@ class SuiteController {
         this.userRepo = u;
     }
 
+    // --- ROOT ENDPOINT (FIXES WHITELABEL 404) ---
+    @GetMapping("/")
+    public ResponseEntity<?> index() {
+        return ResponseEntity.ok(Map.of(
+            "status", "Online",
+            "message", "Welcome to Suite Premium API",
+            "endpoints", List.of("/api/products", "/api/login", "/api/register")
+        ));
+    }
+
     // --- USER ENDPOINTS ---
 
     @GetMapping("/products")
@@ -205,5 +216,15 @@ class SuiteController {
     public void deleteOrder(@PathVariable Long id) {
         orderRepo.deleteById(id);
     }
+}
 
+// --- GLOBAL EXCEPTION HANDLER ---
+@ControllerAdvice
+class GlobalExceptionHandler {
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<?> handleAllExceptions(Exception ex) {
+        return ResponseEntity
+            .status(HttpStatus.INTERNAL_SERVER_ERROR)
+            .body(Map.of("error", ex.getMessage(), "status", 500));
+    }
 }
