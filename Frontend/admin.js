@@ -1,5 +1,7 @@
-const API = "http://localhost:8080/api";
+/*const API = "http://localhost:8080/api";
+*/
 
+const API = "/api";
 function showNotification(message, isError = false) {
     const toast = document.getElementById('toast');
     const msg = document.getElementById('toast-msg');
