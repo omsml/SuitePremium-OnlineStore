@@ -299,15 +299,13 @@ Set these in **Render → Environment** tab (never commit to source code):
 
 ## 📄 License
 
-## License
-
 This project is licensed under the MIT License © 2026 Omm Prakash Samal.
 
 This software is provided for educational and demonstration purposes only.
 It does not collect personal user data or process real financial transactions.
-
 No sensitive credentials are exposed; secure practices are recommended for production use.
 Users are responsible for implementing proper security before real-world deployment.
+
 ---
 
 <div align="center">
