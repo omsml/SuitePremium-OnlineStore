@@ -3,7 +3,8 @@
  * 1. GLOBAL CONFIGURATION & STATE
  * =================================================================
  */
-const API = "http://localhost:8080/api"; // For admin backend if needed
+/*const API = "http://localhost:8080/api"; // For admin backend if needed */
+const API = "/api";
 const INR_CONV = 83; 
 const CATS = ['All', 'Mobiles', 'Laptops', 'Electronics', 'Furniture', 'Fashion' ,'Books'];
 
