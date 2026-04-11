@@ -19,3 +19,39 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+--------------------------------------------------------------------
+
+ADDITIONAL INFORMATION (FOR EDUCATIONAL & DEMONSTRATION PURPOSE)
+
+1. Project Nature:
+This project is developed strictly for educational and demonstration purposes as part of an internship and learning exercise in full-stack development.
+
+2. No Commercial Use Guarantee:
+This application is not intended for production-grade commercial usage without further enhancements, security hardening, and compliance implementations.
+
+3. Data & Privacy Notice:
+- This application does NOT collect, store, or process any sensitive personal user data.
+- No real personal identification details are required to use the system.
+- Any user-related data used in the system is minimal and only for demonstration purposes.
+
+4. Payment Disclaimer:
+- This project does NOT include any real payment gateway integration.
+- No financial transactions are processed within this application.
+- Any payment-related UI elements are purely for simulation purposes only.
+
+5. Security Note:
+- No confidential credentials (such as database URLs, passwords, or API keys) are exposed in the public version of this project.
+- Environment variables are recommended for any sensitive configurations in real deployments.
+
+6. Developer Responsibility:
+Users of this software are responsible for implementing proper security, authentication, and data protection mechanisms before using it in real-world applications.
+
+7. Learning Outcome:
+This project demonstrates:
+- Full-stack architecture (Frontend + Backend)
+- REST API integration
+- Cloud deployment (Render)
+- Database connectivity (MySQL)
+
+--------------------------------------------------------------------
