@@ -16,6 +16,8 @@ import jakarta.persistence.*;
 import java.util.List;
 import java.util.Optional;
 import java.util.Map; // Added for the root response
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @SpringBootApplication
 public class SuiteBackend {
@@ -227,4 +229,17 @@ class GlobalExceptionHandler {
             .status(HttpStatus.INTERNAL_SERVER_ERROR)
             .body(Map.of("error", ex.getMessage(), "status", 500));
     }
+   @Controller
+class PageController {
+
+    @GetMapping("/")
+    public String home() {
+        return "forward:/index.html";
+    }
+
+    @GetMapping("/admin")
+    public String admin() {
+        return "forward:/admin.html";
+    }
+}
 }
