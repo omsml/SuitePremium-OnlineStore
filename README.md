@@ -132,37 +132,7 @@ Railway MySQL Database
 | Hosting | Render (Docker) | Cloud-containerised deployment |
 
 ---
-
-## 📁 Project Structure
-
-```
-SuitePremium-OnlineStore/
-│
-├── Backend/
-│   ├── src/
-│   │   ├── main/
-│   │   │   ├── java/com/suite/app/
-│   │   │   │   └── SuiteBackend.java       # Main app + all controllers
-│   │   │   └── resources/
-│   │   │       ├── application.properties  # Config (uses env vars)
-│   │   │       └── static/                 # Frontend served by Spring Boot
-│   │   │           ├── index.html
-│   │   │           ├── admin.html
-│   │   │           ├── script.js
-│   │   │           ├── admin.js
-│   │   │           ├── style.css
-│   │   │           └── admin.css
-│   ├── pom.xml
-│   └── Dockerfile                          # Multi-stage Docker build
-│
-└── Frontend/                               # Source frontend files (reference)
-    ├── index.html
-    ├── admin.html
-    ├── script.js
-    ├── admin.js
-    ├── style.css
-    └── admin.css
-```
+   
 
 ---
 
@@ -203,37 +173,8 @@ SuitePremium-OnlineStore/
 
 ## 🗄 Database Schema
 
-The application uses a **Railway MySQL** database (`suite_db` / `railway`) with the following core tables:
+The application uses a **Railway MySQL** database (`suite_db` / `railway`) :
 
-```sql
--- Products table
-CREATE TABLE products (
-  id          BIGINT AUTO_INCREMENT PRIMARY KEY,
-  name        VARCHAR(255) NOT NULL,
-  description TEXT,
-  price       DECIMAL(10,2),
-  category    VARCHAR(100),
-  image_url   VARCHAR(500)
-);
-
--- Users table
-CREATE TABLE users (
-  id       BIGINT AUTO_INCREMENT PRIMARY KEY,
-  username VARCHAR(100) UNIQUE NOT NULL,
-  email    VARCHAR(255) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL
-);
-
--- Orders table
-CREATE TABLE orders (
-  id         BIGINT AUTO_INCREMENT PRIMARY KEY,
-  user_id    BIGINT,
-  product_id BIGINT,
-  quantity   INT,
-  status     VARCHAR(50),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
 
 > Tables are auto-managed by Hibernate (`spring.jpa.hibernate.ddl-auto=update`).
 
@@ -293,47 +234,6 @@ http://localhost:8080/api/products → API test
 ## ☁️ Deployment
 
 The application is deployed as a **single full-stack service** on Render — the Spring Boot backend serves the frontend static files directly, eliminating CORS issues.
-
-### Docker (Multi-Stage Build)
-
-```dockerfile
-# Stage 1: Build
-FROM maven:3.9.9-eclipse-temurin-17 AS build
-WORKDIR /app
-COPY . .
-RUN mvn clean package -DskipTests
-
-# Stage 2: Run
-FROM eclipse-temurin:17-jdk-jammy
-WORKDIR /app
-COPY --from=build /app/target/*.jar app.jar
-EXPOSE 8080
-ENTRYPOINT ["java","-jar","app.jar"]
-```
-
-### Render Configuration
-
-| Setting | Value |
-|---|---|
-| Runtime | Docker |
-| Root Directory | `Backend` |
-| Dockerfile Path | `./Dockerfile` |
-| Build Context | `.` |
-| Docker Command | *(leave empty)* |
-
-### `application.properties` for Production
-
-```properties
-spring.datasource.url=${SPRING_DATASOURCE_URL}
-spring.datasource.username=${SPRING_DATASOURCE_USERNAME}
-spring.datasource.password=${SPRING_DATASOURCE_PASSWORD}
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-
-server.port=${PORT:8080}
-```
 
 ---
 
